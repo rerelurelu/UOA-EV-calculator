@@ -23,58 +23,97 @@ class MainPage extends StatelessWidget {
       body: KeyboardActions(
         config: _keyboardActionConfig,
         tapOutsideToDismiss: true,
-        child: Center(
-          child: Column(
-            children: [
-              Text(
-                '期待値: 0.0%',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: '○秒おきに',
+        child: Container(
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(height: 32),
+                  Text(
+                    '期待値: 0.0%',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  focusNode: _textNode1,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: '○％の確率で',
+                  SizedBox(height: 32),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 24.0,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: '○秒おきに',
+                      ),
+                      focusNode: _textNode1,
+                    ),
                   ),
-                  focusNode: _textNode2,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: '○秒間',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 24.0,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: '○％の確率で',
+                      ),
+                      focusNode: _textNode2,
+                    ),
                   ),
-                  focusNode: _textNode3,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: 'スコア○％アップ',
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 24.0,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: '○秒間',
+                      ),
+                      focusNode: _textNode3,
+                    ),
                   ),
-                  focusNode: _textNode4,
-                ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 24.0,
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: 'スコア○％アップ',
+                      ),
+                      focusNode: _textNode4,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 40.0,
+                      horizontal: 24.0,
+                    ),
+                    child: SizedBox(
+                      height: 55,
+                      width: 200,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          '計算する',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.indigo.shade200,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
