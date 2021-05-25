@@ -30,7 +30,7 @@ class MainPage extends StatelessWidget {
                 children: [
                   SizedBox(height: 32),
                   Text(
-                    '期待値: 0.0%',
+                    '期待値: 0.00%',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w500,
