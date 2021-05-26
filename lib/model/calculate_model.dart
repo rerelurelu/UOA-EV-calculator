@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CalculateModel extends ChangeNotifier {
-  double expectedValue = 0.00;
+  String expectedValue = '0.00';
 
-  void calculateExpectedValue(int incr, int prob, int interval, int time) {
+  void calculateExpectedValue(int interval, int prob, int time, int incr) {
     /**
      * incr -> スコア○％アップ
      * prob -> ○％の確率で
      * interval -> ○秒おきに
      * time -> ○秒間
      */
-    expectedValue = (incr / 100) *
-        (prob * time) /
-        ((interval + time) * prob + interval * (1 - prob));
+    double result = incr *
+        (prob / 100 * time) /
+        ((interval + time) * prob / 100 + interval * (1 - prob / 100));
+
+    expectedValue = result.toStringAsFixed(2);
+
     notifyListeners();
   }
 }
