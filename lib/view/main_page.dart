@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
+import 'package:provider/provider.dart';
+
+import '../model/calculate_model.dart';
 
 class MainPage extends StatelessWidget {
   final FocusNode _textNode1 = FocusNode();
   final FocusNode _textNode2 = FocusNode();
   final FocusNode _textNode3 = FocusNode();
   final FocusNode _textNode4 = FocusNode();
+
+  final TextEditingController incrController = TextEditingController();
+  final TextEditingController probController = TextEditingController();
+  final TextEditingController intervalController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +38,9 @@ class MainPage extends StatelessWidget {
                 children: [
                   SizedBox(height: 32),
                   Text(
-                    '期待値: 0.00%',
+                    '期待値: ' +
+                        Provider.of<CalculateModel>(context).expectedValue +
+                        '％',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w500,
@@ -48,6 +58,7 @@ class MainPage extends StatelessWidget {
                         hintText: '○秒おきに',
                       ),
                       focusNode: _textNode1,
+                      controller: intervalController,
                     ),
                   ),
                   Padding(
@@ -61,6 +72,7 @@ class MainPage extends StatelessWidget {
                         hintText: '○％の確率で',
                       ),
                       focusNode: _textNode2,
+                      controller: probController,
                     ),
                   ),
                   Padding(
@@ -74,6 +86,7 @@ class MainPage extends StatelessWidget {
                         hintText: '○秒間',
                       ),
                       focusNode: _textNode3,
+                      controller: timeController,
                     ),
                   ),
                   Padding(
@@ -87,6 +100,7 @@ class MainPage extends StatelessWidget {
                         hintText: 'スコア○％アップ',
                       ),
                       focusNode: _textNode4,
+                      controller: incrController,
                     ),
                   ),
                   Padding(
@@ -98,7 +112,16 @@ class MainPage extends StatelessWidget {
                       height: 55,
                       width: 200,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          int interval =
+                              int.parse(intervalController.value.text);
+                          int prob = int.parse(probController.value.text);
+                          int time = int.parse(timeController.value.text);
+                          int incr = int.parse(incrController.value.text);
+                          Provider.of<CalculateModel>(context, listen: false)
+                              .calculateExpectedValue(
+                                  interval, prob, time, incr);
+                        },
                         child: Text(
                           '計算する',
                           style: TextStyle(
@@ -107,6 +130,28 @@ class MainPage extends StatelessWidget {
                         ),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.indigo.shade200,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5.0,
+                      horizontal: 24.0,
+                    ),
+                    child: SizedBox(
+                      height: 40,
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          clearText();
+                        },
+                        child: Text(
+                          '数値をリセット',
+                          style: TextStyle(),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.grey.shade400,
                         ),
                       ),
                     ),
@@ -132,5 +177,12 @@ class MainPage extends StatelessWidget {
         KeyboardActionsItem(focusNode: _textNode4),
       ],
     );
+  }
+
+  void clearText() {
+    intervalController.clear();
+    probController.clear();
+    timeController.clear();
+    incrController.clear();
   }
 }
