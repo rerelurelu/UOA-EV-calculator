@@ -25,7 +25,6 @@ class MainPage extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       appBar: NewGradientAppBar(
         title: Text('期待値計算機'),
         gradient: LinearGradient(
