@@ -18,7 +18,7 @@ dependencies:
   new_gradient_app_bar: ^0.2.0
   provider: ^5.0.0
   keyboard_actions: ^3.4.0
-
+  flutter_riverpod: ^0.14.0+3
 
 dev_dependencies:
   flutter_test:
