@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
-import 'package:provider/provider.dart';
 
 import '../model/calculate_model.dart';
 
 class MainPage extends StatelessWidget {
+  final double btnHeight = 55.0;
+  final double btnWidth = 200.0;
+
   final FocusNode _textNode1 = FocusNode();
   final FocusNode _textNode2 = FocusNode();
   final FocusNode _textNode3 = FocusNode();
@@ -16,9 +19,13 @@ class MainPage extends StatelessWidget {
   final TextEditingController intervalController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
 
-  @override
+  final expectedValueProvider = ChangeNotifierProvider(
+    (ref) => CalculateModel(),
+  );
+
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: NewGradientAppBar(
         title: Text('期待値計算機'),
         gradient: LinearGradient(
@@ -30,22 +37,22 @@ class MainPage extends StatelessWidget {
       ),
       body: KeyboardActions(
         config: _keyboardActionConfig,
-        tapOutsideToDismiss: true,
-        child: Container(
-          child: SingleChildScrollView(
+        tapOutsideToDismiss: false,
+        child: SingleChildScrollView(
+          child: Container(
             child: Center(
               child: Column(
                 children: [
                   SizedBox(height: 32),
-                  Text(
-                    '期待値: ' +
-                        Provider.of<CalculateModel>(context).expectedValue +
-                        '％',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  Consumer(builder: (context, watch, child) {
+                    return Text(
+                      '期待値: ' + watch(expectedValueProvider).exvalue + '％',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    );
+                  }),
                   SizedBox(height: 32),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -109,18 +116,15 @@ class MainPage extends StatelessWidget {
                       horizontal: 24.0,
                     ),
                     child: SizedBox(
-                      height: 55,
-                      width: 200,
+                      height: btnHeight,
+                      width: btnWidth,
                       child: ElevatedButton(
                         onPressed: () {
-                          int interval =
-                              int.parse(intervalController.value.text);
+                          int interval = int.parse(intervalController.value.text);
                           int prob = int.parse(probController.value.text);
                           int time = int.parse(timeController.value.text);
                           int incr = int.parse(incrController.value.text);
-                          Provider.of<CalculateModel>(context, listen: false)
-                              .calculateExpectedValue(
-                                  interval, prob, time, incr);
+                          context.read(expectedValueProvider).calculate(interval, prob, time, incr);
                         },
                         child: Text(
                           '計算する',
@@ -140,15 +144,17 @@ class MainPage extends StatelessWidget {
                       horizontal: 24.0,
                     ),
                     child: SizedBox(
-                      height: 40,
-                      width: 150,
+                      height: btnHeight,
+                      width: btnWidth,
                       child: ElevatedButton(
                         onPressed: () {
                           clearText();
                         },
                         child: Text(
                           '数値をリセット',
-                          style: TextStyle(),
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
                         ),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.grey.shade400,
