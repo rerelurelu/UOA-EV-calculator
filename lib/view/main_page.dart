@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../model/calculate_model.dart';
 
 class MainPage extends StatelessWidget {
-  final double btnHeight = 55.0;
-  final double btnWidth = 200.0;
+  final double btnHeight = 50.0;
+  final double btnWidth = 100.0;
+  final double btnFontSize = 16.0;
+  final Color textColor = Color(0xff577979);
+  final Color formTextColor = Colors.white;
 
   final FocusNode _textNode1 = FocusNode();
   final FocusNode _textNode2 = FocusNode();
@@ -25,143 +27,179 @@ class MainPage extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NewGradientAppBar(
-        title: Text('期待値計算機'),
-        gradient: LinearGradient(
-          colors: [
-            Color.fromRGBO(241, 157, 181, 1.0),
-            Color.fromRGBO(124, 199, 232, 1.0),
-          ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff7cc7e8),
+              Color(0xffDDBDFC),
+            ],
+            begin: Alignment.centerLeft,
+            end: Alignment.bottomRight,
+          ),
         ),
-      ),
-      body: KeyboardActions(
-        config: _keyboardActionConfig,
-        tapOutsideToDismiss: false,
-        child: SingleChildScrollView(
-          child: Container(
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(height: 32),
-                  Consumer(builder: (context, watch, child) {
-                    return Text(
-                      '期待値: ' + watch(expectedValueProvider).exvalue + '％',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    );
-                  }),
-                  SizedBox(height: 32),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 24.0,
-                    ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: '○秒おきに',
-                      ),
-                      focusNode: _textNode1,
-                      controller: intervalController,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 24.0,
-                    ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: '○％の確率で',
-                      ),
-                      focusNode: _textNode2,
-                      controller: probController,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 24.0,
-                    ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: '○秒間',
-                      ),
-                      focusNode: _textNode3,
-                      controller: timeController,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12.0,
-                      horizontal: 24.0,
-                    ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        hintText: 'スコア○％アップ',
-                      ),
-                      focusNode: _textNode4,
-                      controller: incrController,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 40.0,
-                      horizontal: 24.0,
-                    ),
-                    child: SizedBox(
-                      height: btnHeight,
-                      width: btnWidth,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          int interval = int.parse(intervalController.value.text);
-                          int prob = int.parse(probController.value.text);
-                          int time = int.parse(timeController.value.text);
-                          int incr = int.parse(incrController.value.text);
-                          context.read(expectedValueProvider).calculate(interval, prob, time, incr);
-                        },
-                        child: Text(
-                          '計算する',
-                          style: TextStyle(
-                            fontSize: 20,
+        child: KeyboardActions(
+          config: _keyboardActionConfig,
+          tapOutsideToDismiss: false,
+          child: SingleChildScrollView(
+            child: Container(
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(height: 100),
+                    Consumer(builder: (context, watch, child) {
+                      return Container(
+                        height: 80.0,
+                        width: 300.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromRGBO(255, 255, 255, .5),
+                        ),
+                        child: Center(
+                          child: Text(
+                            watch(expectedValueProvider).exvalue + '％',
+                            style: TextStyle(
+                              color: textColor,
+                              fontSize: 32,
+                            ),
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.indigo.shade200,
+                      );
+                    }),
+                    SizedBox(height: 32),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 24.0,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: '○秒おきに',
                         ),
+                        focusNode: _textNode1,
+                        controller: intervalController,
+                        style: TextStyle(color: formTextColor),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5.0,
-                      horizontal: 24.0,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 24.0,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: '○％の確率で',
+                        ),
+                        focusNode: _textNode2,
+                        controller: probController,
+                        style: TextStyle(color: formTextColor),
+                      ),
                     ),
-                    child: SizedBox(
-                      height: btnHeight,
-                      width: btnWidth,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          clearText();
-                        },
-                        child: Text(
-                          '数値をリセット',
-                          style: TextStyle(
-                            fontSize: 20,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 24.0,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: '○秒間',
+                        ),
+                        focusNode: _textNode3,
+                        controller: timeController,
+                        style: TextStyle(color: formTextColor),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0,
+                        horizontal: 24.0,
+                      ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: 'スコア○％アップ',
+                        ),
+                        focusNode: _textNode4,
+                        controller: incrController,
+                        style: TextStyle(color: formTextColor),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 24.0,
+                          ),
+                          child: Container(
+                            height: btnHeight,
+                            width: btnWidth,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromRGBO(255, 255, 255, .5),
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                clearText();
+                              },
+                              child: Text(
+                                'リセット',
+                                style: TextStyle(
+                                  fontSize: btnFontSize,
+                                  color: textColor,
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                elevation: 0.0,
+                              ),
+                            ),
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.grey.shade400,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 40.0,
+                            horizontal: 24.0,
+                          ),
+                          child: Container(
+                            height: btnHeight,
+                            width: btnWidth,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromRGBO(255, 255, 255, .5),
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                int interval = int.parse(intervalController.value.text);
+                                int prob = int.parse(probController.value.text);
+                                int time = int.parse(timeController.value.text);
+                                int incr = int.parse(incrController.value.text);
+                                context
+                                    .read(expectedValueProvider)
+                                    .calculate(interval, prob, time, incr);
+                              },
+                              child: Text(
+                                '計算する',
+                                style: TextStyle(
+                                  fontSize: btnFontSize,
+                                  color: textColor,
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.transparent,
+                                elevation: 0.0,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -173,7 +211,7 @@ class MainPage extends StatelessWidget {
   get _keyboardActionConfig {
     return KeyboardActionsConfig(
       keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
-      keyboardSeparatorColor: Colors.grey,
+      keyboardSeparatorColor: Color.fromRGBO(255, 255, 255, .3),
       nextFocus: true,
       actions: [
         KeyboardActionsItem(focusNode: _textNode1),

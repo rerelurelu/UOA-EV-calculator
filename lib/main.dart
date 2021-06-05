@@ -15,7 +15,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ユニエア 期待値計算機',
-      theme: ThemeData.light(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xff7cc7e8),
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.cyanAccent.shade200,
+            ),
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          hintStyle: TextStyle(
+            color: Color(0xff577979),
+          ),
+        ),
+      ),
       home: MainPage(),
     );
   }
