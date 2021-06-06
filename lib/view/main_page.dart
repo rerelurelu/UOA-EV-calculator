@@ -8,6 +8,8 @@ class MainPage extends StatelessWidget {
   final double btnHeight = 50.0;
   final double btnWidth = 100.0;
   final double btnFontSize = 16.0;
+  final double formVertical = 12.0;
+  final double formHorizontal = 30.0;
   final Color textColor = Color(0xff577979);
   final Color formTextColor = Colors.white;
 
@@ -32,7 +34,7 @@ class MainPage extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Color(0xff7cc7e8),
-              Color(0xffDDBDFC),
+              Color(0xffF5F7F6),
             ],
             begin: Alignment.centerLeft,
             end: Alignment.bottomRight,
@@ -59,7 +61,7 @@ class MainPage extends StatelessWidget {
                           child: Text(
                             watch(expectedValueProvider).exvalue + '％',
                             style: TextStyle(
-                              color: textColor,
+                              color: Color(0xff738c8c),
                               fontSize: 32,
                             ),
                           ),
@@ -68,9 +70,9 @@ class MainPage extends StatelessWidget {
                     }),
                     SizedBox(height: 32),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 24.0,
+                      padding: EdgeInsets.symmetric(
+                        vertical: formVertical,
+                        horizontal: formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -83,9 +85,9 @@ class MainPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 24.0,
+                      padding: EdgeInsets.symmetric(
+                        vertical: formVertical,
+                        horizontal: formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -98,9 +100,9 @@ class MainPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 24.0,
+                      padding: EdgeInsets.symmetric(
+                        vertical: formVertical,
+                        horizontal: formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -113,9 +115,9 @@ class MainPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12.0,
-                        horizontal: 24.0,
+                      padding: EdgeInsets.symmetric(
+                        vertical: formVertical,
+                        horizontal: formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
