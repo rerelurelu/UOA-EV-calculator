@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.cyanAccent.shade200,
+              color: Color(0xff67b7b2),
             ),
           ),
           enabledBorder: UnderlineInputBorder(
