@@ -3,15 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../model/calculate_model.dart';
+import './setting_page.dart';
+import '../theme/backgroud_data.dart';
 
 class MainPage extends StatelessWidget {
-  final double btnHeight = 50.0;
-  final double btnWidth = 100.0;
-  final double btnFontSize = 16.0;
-  final double formVertical = 12.0;
-  final double formHorizontal = 30.0;
-  final Color textColor = Color(0xff577979);
-  final Color formTextColor = Colors.white;
+  final double _btnHeight = 50.0;
+  final double _btnWidth = 100.0;
+  final double _btnFontSize = 16.0;
+  final double _formVertical = 12.0;
+  final double _formHorizontal = 30.0;
+  final Color _textColor = Color(0xff577979);
+  final Color _formTextColor = Colors.white;
 
   final FocusNode _textNode1 = FocusNode();
   final FocusNode _textNode2 = FocusNode();
@@ -30,16 +32,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xff7cc7e8),
-              Color(0xffF5F7F6),
-            ],
-            begin: Alignment.centerLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
+        decoration: hinataColor,
         child: KeyboardActions(
           config: _keyboardActionConfig,
           tapOutsideToDismiss: false,
@@ -59,7 +52,7 @@ class MainPage extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            watch(expectedValueProvider).exvalue + '％',
+                            watch(expectedValueProvider).getExvalue + '％',
                             style: TextStyle(
                               color: Color(0xff738c8c),
                               fontSize: 32,
@@ -71,8 +64,8 @@ class MainPage extends StatelessWidget {
                     SizedBox(height: 32),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        vertical: formVertical,
-                        horizontal: formHorizontal,
+                        vertical: _formVertical,
+                        horizontal: _formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -81,13 +74,13 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode1,
                         controller: intervalController,
-                        style: TextStyle(color: formTextColor),
+                        style: TextStyle(color: _formTextColor),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        vertical: formVertical,
-                        horizontal: formHorizontal,
+                        vertical: _formVertical,
+                        horizontal: _formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -96,13 +89,13 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode2,
                         controller: probController,
-                        style: TextStyle(color: formTextColor),
+                        style: TextStyle(color: _formTextColor),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        vertical: formVertical,
-                        horizontal: formHorizontal,
+                        vertical: _formVertical,
+                        horizontal: _formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -111,13 +104,13 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode3,
                         controller: timeController,
-                        style: TextStyle(color: formTextColor),
+                        style: TextStyle(color: _formTextColor),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        vertical: formVertical,
-                        horizontal: formHorizontal,
+                        vertical: _formVertical,
+                        horizontal: _formHorizontal,
                       ),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -126,7 +119,7 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode4,
                         controller: incrController,
-                        style: TextStyle(color: formTextColor),
+                        style: TextStyle(color: _formTextColor),
                       ),
                     ),
                     Row(
@@ -138,8 +131,8 @@ class MainPage extends StatelessWidget {
                             horizontal: 24.0,
                           ),
                           child: Container(
-                            height: btnHeight,
-                            width: btnWidth,
+                            height: _btnHeight,
+                            width: _btnWidth,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                               color: Color.fromRGBO(255, 255, 255, .5),
@@ -151,8 +144,8 @@ class MainPage extends StatelessWidget {
                               child: Text(
                                 'リセット',
                                 style: TextStyle(
-                                  fontSize: btnFontSize,
-                                  color: textColor,
+                                  fontSize: _btnFontSize,
+                                  color: _textColor,
                                 ),
                               ),
                               style: ElevatedButton.styleFrom(
@@ -168,8 +161,8 @@ class MainPage extends StatelessWidget {
                             horizontal: 24.0,
                           ),
                           child: Container(
-                            height: btnHeight,
-                            width: btnWidth,
+                            height: _btnHeight,
+                            width: _btnWidth,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
                               color: Color.fromRGBO(255, 255, 255, .5),
@@ -187,8 +180,8 @@ class MainPage extends StatelessWidget {
                               child: Text(
                                 '計算する',
                                 style: TextStyle(
-                                  fontSize: btnFontSize,
-                                  color: textColor,
+                                  fontSize: _btnFontSize,
+                                  color: _textColor,
                                 ),
                               ),
                               style: ElevatedButton.styleFrom(
@@ -206,6 +199,24 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.settings,
+          color: Color.fromRGBO(0, 0, 0, .3),
+        ),
+        mini: true,
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SettingPage(),
+              fullscreenDialog: true,
+            ),
+          );
+        },
       ),
     );
   }
