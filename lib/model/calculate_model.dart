@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CalculateModel extends ChangeNotifier {
   String expectedValue = '0.00';
-  String get exvalue => expectedValue;
+  String get getExvalue => expectedValue;
 
   void calculate(int interval, int prob, int time, int incr) {
     /**
