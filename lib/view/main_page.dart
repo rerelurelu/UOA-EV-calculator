@@ -6,6 +6,10 @@ import '../model/calculate_model.dart';
 import './setting_page.dart';
 import '../theme/backgroud_data.dart';
 
+final expectedValueProvider = ChangeNotifierProvider(
+  (ref) => CalculateModel(),
+);
+
 class MainPage extends StatelessWidget {
   final double _btnHeight = 50.0;
   final double _btnWidth = 100.0;
@@ -24,10 +28,6 @@ class MainPage extends StatelessWidget {
   final TextEditingController probController = TextEditingController();
   final TextEditingController intervalController = TextEditingController();
   final TextEditingController timeController = TextEditingController();
-
-  final expectedValueProvider = ChangeNotifierProvider(
-    (ref) => CalculateModel(),
-  );
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,6 +140,7 @@ class MainPage extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () {
                                 clearText();
+                                context.read(expectedValueProvider).resetValue();
                               },
                               child: Text(
                                 'リセット',
