@@ -19,4 +19,9 @@ class CalculateModel extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void resetValue(){
+    expectedValue = '0.0';
+    notifyListeners();
+  }
 }
