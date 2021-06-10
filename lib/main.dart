@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'ユニエア 期待値計算機',
-          theme: hinataTheme,
+          theme: defaultTheme,
           home: MainPage(),
         );
       },

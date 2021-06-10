@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 
 import '../model/calculate_model.dart';
-import './setting_page.dart';
-import '../theme/backgroud_data.dart';
+import '../theme/theme_data.dart';
 
 final expectedValueProvider = ChangeNotifierProvider(
   (ref) => CalculateModel(),
@@ -32,7 +31,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: hinataColor,
+        decoration: defaultColor,
         child: KeyboardActions(
           config: _keyboardActionConfig,
           tapOutsideToDismiss: false,
@@ -200,24 +199,6 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.settings,
-          color: Color.fromRGBO(0, 0, 0, .3),
-        ),
-        mini: true,
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SettingPage(),
-              fullscreenDialog: true,
-            ),
-          );
-        },
       ),
     );
   }
