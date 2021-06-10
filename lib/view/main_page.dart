@@ -16,7 +16,8 @@ class MainPage extends StatelessWidget {
   final double _formVertical = 12.0;
   final double _formHorizontal = 30.0;
   final Color _textColor = Color(0xff577979);
-  final Color _formTextColor = Colors.white;
+  final Color _formTextColor = Color(0xff8a8a8a);
+  final double _formFontSize = 18.0;
 
   final FocusNode _textNode1 = FocusNode();
   final FocusNode _textNode2 = FocusNode();
@@ -73,7 +74,10 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode1,
                         controller: intervalController,
-                        style: TextStyle(color: _formTextColor),
+                        style: TextStyle(
+                          color: _formTextColor,
+                          fontSize: _formFontSize,
+                        ),
                       ),
                     ),
                     Padding(
@@ -88,7 +92,10 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode2,
                         controller: probController,
-                        style: TextStyle(color: _formTextColor),
+                        style: TextStyle(
+                          color: _formTextColor,
+                          fontSize: _formFontSize,
+                        ),
                       ),
                     ),
                     Padding(
@@ -103,7 +110,10 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode3,
                         controller: timeController,
-                        style: TextStyle(color: _formTextColor),
+                        style: TextStyle(
+                          color: _formTextColor,
+                          fontSize: _formFontSize,
+                        ),
                       ),
                     ),
                     Padding(
@@ -118,7 +128,10 @@ class MainPage extends StatelessWidget {
                         ),
                         focusNode: _textNode4,
                         controller: incrController,
-                        style: TextStyle(color: _formTextColor),
+                        style: TextStyle(
+                          color: _formTextColor,
+                          fontSize: _formFontSize,
+                        ),
                       ),
                     ),
                     Row(

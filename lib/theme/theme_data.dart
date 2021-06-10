@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /* Theme Color */
 final ThemeData defaultTheme = ThemeData().copyWith(
-  scaffoldBackgroundColor: Color(0xff7cc7e8),
+  scaffoldBackgroundColor: Color(0xffE7EFF9),
   inputDecorationTheme: InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
