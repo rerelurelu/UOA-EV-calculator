@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 
-/* Theme Style */
+/* Theme Color */
 final ThemeData defaultTheme = ThemeData().copyWith(
-  scaffoldBackgroundColor: Colors.teal.shade200,
-);
-
-final ThemeData sakuraTheme = ThemeData().copyWith(
-  scaffoldBackgroundColor: Colors.pink.shade200,
-);
-
-final ThemeData hinataTheme = ThemeData().copyWith(
   scaffoldBackgroundColor: Color(0xff7cc7e8),
   inputDecorationTheme: InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(
@@ -28,41 +20,14 @@ final ThemeData hinataTheme = ThemeData().copyWith(
   ),
 );
 
-/* Theme data  */
-enum ThemeMode {
-  defaultTheme,
-  sakuraTheme,
-  hinataTheme,
-}
-
-extension MyThemeMode on ThemeMode {
-  static final id = {
-    defaultTheme: 0,
-    sakuraTheme: 1,
-    hinataTheme: 2,
-  };
-
-  int? get getId => id[this];
-
-  static final name = {
-    defaultTheme: 'デフォルト',
-    sakuraTheme: '桜色',
-    hinataTheme: '空色',
-  };
-
-  String? get getName => name[this];
-
-  static final theme = {
-    defaultTheme: defaultTheme,
-    sakuraTheme: sakuraTheme,
-    hinataTheme: hinataTheme,
-  };
-
-  ThemeData? get getTheme => theme[this];
-
-  static final backgroud = {
-    defaultTheme: defaultTheme,
-    sakuraTheme: sakuraTheme,
-    hinataTheme: hinataTheme,
-  };
-}
+/* Background Color */
+final BoxDecoration defaultColor = BoxDecoration().copyWith(
+  gradient: LinearGradient(
+    colors: [
+      Color(0xffCFD6E6),
+      Color(0xffE7EFF9),
+    ],
+    begin: Alignment.centerLeft,
+    end: Alignment.bottomRight,
+  ),
+);
