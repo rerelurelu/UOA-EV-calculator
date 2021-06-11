@@ -11,16 +11,15 @@ class CalculateModel extends ChangeNotifier {
      * interval -> ○秒おきに
      * time -> ○秒間
      **/
-    double result = incr *
-        (prob / 100 * time) /
-        ((interval + time) * prob / 100 + interval * (1 - prob / 100));
+    double result =
+        incr * (prob / 100 * time) / ((interval + time) * prob / 100 + interval * (1 - prob / 100));
 
     expectedValue = result.toStringAsFixed(2);
 
     notifyListeners();
   }
 
-  void resetValue(){
+  void resetValue() {
     expectedValue = '0.0';
     notifyListeners();
   }
