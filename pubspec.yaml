@@ -6,7 +6,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -15,20 +15,20 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # My packages
-  new_gradient_app_bar: ^0.2.0
-  keyboard_actions: ^3.4.0
+  keyboard_actions: 3.4.0
   flutter_riverpod: ^0.14.0+3
   flutter_launcher_icons: ^0.9.0
+  launch_review: ^3.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
 
 flutter_icons:
   android: false
   ios: true
-  image_path: 'lib/assets/uoa_icon.png'
+  remove_alpha_ios: true
+  image_path: 'assets/uoa_icon.png'
