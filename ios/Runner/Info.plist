@@ -46,5 +46,10 @@
 		<string>itms-beta</string>
 		<string>itms</string>
 	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	<string>https</string>
+	<string>http</string>
+	</array>
 </dict>
 </plist>
