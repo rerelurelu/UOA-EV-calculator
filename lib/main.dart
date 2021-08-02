@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uoa_ev_calculator/view/new_install.dart';
 
-import './view/main_page.dart';
 import 'theme/theme_data.dart';
 
 void main() async {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'ユニエア 期待値計算機',
           theme: defaultTheme,
-          home: MainPage(),
+          home: NewInstall(),
         );
       },
     );
