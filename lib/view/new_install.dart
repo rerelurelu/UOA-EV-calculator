@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:launch_review/launch_review.dart';
+import 'package:uoa_ev_calculator/view/main_page.dart';
 
 class NewInstall extends StatelessWidget {
   @override
@@ -22,8 +23,24 @@ class NewInstall extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home'),
+        title: Text('お知らせ'),
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.close_rounded,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MainPage(),
+                ),
+              );
+            },
+          ),
+          const SizedBox(width: 10)
+        ],
       ),
       body: Center(
         child: Container(
